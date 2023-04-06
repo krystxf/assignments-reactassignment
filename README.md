@@ -14,58 +14,66 @@ Please, read following instructions and let us know if anything is not clear.
 * Send us your work preferably as a link to git repository (e.g. GitHub).
 
 ## Time estimation
-* First read the assigment, check the provided code, and make clear you understand what we ask for.
+
+* First read the assignment, check the provided code, and make clear you understand what we ask for.
 * Try to estimate the time you require to finish it.
 * Email us your estimation and a date, where you expect the work to be done.
   Aim for realistic date and keep in mind all other responsibilities you may have
-  (your current work, family duties, vacation or public holidays)
+  (your current work, family duties, vacation or public holidays).
 
 ## The actual work
 
 ### Client app
+
 More information about client are in `client/README.md`. Make sure you read them.
 
-Using provided UI components, implement following modifications, bugfixes or new features (you can decide in what order):
+Using provided UI components, implement the following modifications, bugfixes or new features (you can decide in what order):
 
-- [ ] **B1**: Fix all bugs and visual imperfections you find
-- [ ] **B2**: Fix layout of non-empty `List` component
-- [ ] **B3**: Fix Layout component so the `Footer` is always attached to its bottom
-- [ ] **UI1**: Style `Header` so the button is aligned on the right
-- [ ] **UI2**: Style `ListItem` so action buttons are aligned on the right
-- [ ] **UI3**: Style `ListItem` so the action buttons are only visible when hovering over the item
-- [ ] **F1**: Modify `Footer` to show 0 when no value(s) were passed
-- [ ] **F2**: After button in header is clicked, show `Form` component in the `Header` instead of the clicked button. If the Form is submitted, a new list should be saved on backend and list of all items updated
-- [ ] **F3**: When edit button on todo item is clicked, the row should be replaced by the `Form` component (same as for creating new todo item)
-- [ ] **F4**: Load items from API
-   1) Implement removing todo item
-   1) Implement saving "checked" state of a todo item when changed
-   1) Persist all changes, additions and removals of todo items on server using API calls
-- [ ] **F5**: Sort list of todo items so the _done_ (=checked) items are on the bottom; next sort items by creating date, descending
-- [ ] **F6**: Show number of todo/done items in `Footer`
-- [ ] **F7**: Create a `Button` component and use it instead of all `button` html elements
-- [ ] **SB1**: Add story/stories for `Layout` component
-- [ ] **SB2**: Add story showing `ListItem` with visible buttons (implemented in _UI3_)
-- [ ] **SB3**: Add stories showing available `Button` variations
+- [ ] **B1**: Fix all bugs and visual imperfections you find.
+- [ ] **B2**: Fix layout of the non-empty `List` component.
+- [ ] **B3**: Fix the `Layout` component so the `Footer` is always attached to the bottom of the `Layout`.
+- [ ] **UI1**: Style the `Header` so the "add" button is right-aligned.
+- [ ] **UI2**: Style the `ListItem` so the action buttons are right-aligned.
+- [ ] **UI3**: Style the `ListItem` so the action buttons are only visible when hovering over the item.
+- [ ] **F1**: Modify the `Footer` to show 0 when no value(s) were passed.
+- [ ] **F2**: After button in the `Header` is clicked, show `Form` component in the `Header` instead of the clicked button. If the form is submitted, a new list should be saved on the server and the list of all items should be updated.
+- [ ] **F3**: When the edit button in the `ListItem` is clicked, its content should be replaced by the `Form` component (same as for creating new todo item).
+- [ ] **F4**: Load items from API.
+   1) Implement removing of a todo item.
+   1) Implement saving "checked" state of a todo item when changed.
+   1) Persist all changes, additions and removals of todo items on server using API calls.
+- [ ] **F5**: Sort the list of todo items so the "done" (=checked) items are on the bottom; next sort items by creating date, descending.
+- [ ] **F6**: Show a number of todo/done items in the `Footer`.
+- [ ] **F7**: Create a `Button` component and use it instead of all `button` HTML elements.
+- [ ] **SB1**: Add a story/stories for the `Layout` component.
+- [ ] **SB2**: Add a story showing the `ListItem` with visible buttons (implemented in _"UI3"_).
+- [ ] **SB3**: Add stories showing available `Button` variations.
 
 ### Server
-- [ ] **S1**: Implement custom endpoint for marking single todo item as "done". Calling this endpoint sets `done` field to `true` and `finishedAt` field sets to current time. Use this new endpoint on client
+
+- [ ] **S1**: Implement a custom endpoint for marking single todo item as "done". Calling this endpoint sets the `done` field to `true` and the `finishedAt` field to current time. Use this new endpoint in the client.
 
 ### Advanced tasks (optional)
-- [ ] **O1**: modify the `Form` component (and related ones if needed) so the form field handles not only string, but also number and treat empty string input as `undefiened`
-- [ ] **O2**: limit amount of server calls needed to necessary minimum
+
+- [ ] **O1**: Modify the `Form` component (and other related components if needed) so the form field handles not only string values, but also number. Treat empty string input as `undefined`.
+- [ ] **O2**: Limit the amount of server calls needed to a necessary minimum.
 
 ## Additional comments and restrictions:
-- do not modify API (props) of provided components unless achieving required tasks would not be possible otherwise,
-- do not use any component library like Material UI; do not use Tailwind,
-- feel free to do any other visual modifications that - in your opinion - makes it looking nicer,
-- feel free to install and use any public package you may need
+
+- Do not modify the API (props) of the provided components unless achieving required tasks would not be possible otherwise.
+- Do not use any component library (Material UI for example).
+- Do not use Tailwind.
+- Feel free to do any visual modifications that - in your opinion - improve the design of the application.
+- Feel free to install and use any public package you may need.
 
 ### GitHub
-- do your best to use atomic commits
-- in each commit that solves (fully or partly) one of the tasks above, add tasks id into commit message. For example: _B1: fix typo in ..._   
+
+- Do your best to use atomic commits.
+- In each commit that solves (fully or partly) one of the tasks above, add the task's id into the commit message. For example: _"B1: fix typo in ..."_.
 
 ### Storybook
-- We use Storybook format CSF3, but you can use older version of CSF that you are familiar with
-- If you are not familiar with Storybook at all: try at least the _SB2_ task; it should be doable only by copying and modifying the already existing story
+
+- We use the Storybook's format CSF3, but you can use the older version of the CSF format if you are more familiar with it.
+- If you are not familiar with Storybook at all: try to complete at least the task _"SB2"_. It should be doable only by copying and modifying the already existing story.
 
 
