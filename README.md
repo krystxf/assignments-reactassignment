@@ -13,6 +13,12 @@ Please, read following instructions and let us know if anything is not clear.
   When this is not doable, choose what to implement and what not to.
 * Send us your work preferably as a link to git repository (e.g. GitHub).
 
+## Restrictions
+
+- Do not modify the API (props) of the provided components.
+- Do not use any component library (Material UI for example).
+- Do not use Tailwind.
+
 ## Time estimation
 
 * First read the assignment, check the provided code, and make clear you understand what we ask for.
@@ -58,11 +64,8 @@ Using provided UI components, implement the following modifications, bugfixes or
 - [ ] **O1**: Modify the `Form` component (and other related components if needed) so the form field handles not only string values, but also number. Treat empty string input as `undefined`.
 - [ ] **O2**: Limit the amount of server calls needed to a necessary minimum.
 
-## Additional comments and restrictions:
+## Additional comments
 
-- Do not modify the API (props) of the provided components unless achieving required tasks would not be possible otherwise.
-- Do not use any component library (Material UI for example).
-- Do not use Tailwind.
 - Feel free to do any visual modifications that - in your opinion - improve the design of the application.
 - Feel free to install and use any public package you may need.
 
