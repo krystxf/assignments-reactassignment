@@ -1,12 +1,12 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { Header } from "../Header";
+import { Header } from "./Header";
 
 const meta = {
-    title: "Header",
+    title: "Layout/Header",
     component: Header,
     argTypes: {
-        handleAddItem: { action: "item added" },
+        onAdd: { action: "item added" },
     },
 } as Meta<typeof Header>;
 export default meta;

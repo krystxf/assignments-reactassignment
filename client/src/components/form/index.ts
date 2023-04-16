@@ -1,2 +1,3 @@
-export * from "./Form";
-export * from "./Input";
+export { Checkbox } from "./Checkbox";
+export { Form } from "./Form/Form";
+export { Input } from "./Input";

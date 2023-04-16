@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { Footer } from "../Footer";
+import { Footer } from "./Footer";
 
 const meta = {
-    title: "Footer",
+    title: "Layout/Footer",
     component: Footer,
 } as Meta<typeof Footer>;
 export default meta;
@@ -11,8 +11,8 @@ type Story = StoryObj<typeof Footer>;
 
 export const Default: Story = {
     args: {
-        doneItems: 3,
-        todoItems: 10,
+        doneItemCount: 3,
+        todoItemCount: 10,
     },
 };
 

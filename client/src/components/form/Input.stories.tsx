@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Input } from "../Input";
+
+import { Input } from "./Input";
 
 const meta = {
     title: "Form/Input",
@@ -13,6 +14,7 @@ export const Default: Story = {
         initialValue: "",
     },
 };
+
 export const WithInitialValue: Story = {
     args: {
         initialValue: "Lorem ipsum",

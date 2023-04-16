@@ -1,18 +1,11 @@
-import { Container } from "./components/Container";
-import { Layout } from "./components/Layout";
-import { List } from "./components/List";
-import { Header } from "./components/Header";
-import { Footer } from "./components/Footer";
-import { ThemeProvider } from "./components/ThemeProvider";
+import { Container } from "./components/layout";
+import { ThemeProvider } from "./components/providers/ThemeProvider";
+import { TodoList } from "./components/TodoList";
 
 export const App: React.FC = () => (
     <ThemeProvider>
         <Container>
-            <Layout>
-                <Header handleAddItem={() => console.warn("unimplemented")}>To Do app</Header>
-                <List />
-                <Footer />
-            </Layout>
+            <TodoList />
         </Container>
     </ThemeProvider>
 );
