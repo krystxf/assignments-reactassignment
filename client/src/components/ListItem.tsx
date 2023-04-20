@@ -7,11 +7,34 @@ import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
 const StyledDiv = styled.div`
     display: flex;
     align-items: center;
+    padding: 4px 10px;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+
+    .action_btn {
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.1s ease-in-out;
+    }
+
+    &:hover {
+        background-color: ghostwhite;
+
+        .action_btn {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+
+    .right {
+        margin-left: auto;
+        display: flex;
+        gap: 8px;
+    }
 `;
 
 const Label = styled.label`
     margin-left: 15px;
-    width: 100%;
 `;
 
 export type LiteItemProp = CheckboxProps & {
@@ -24,11 +47,14 @@ export const ListItem: React.FC<LiteItemProp> = ({ label, handleRemoval, handleE
     <StyledDiv>
         <Checkbox {...checkboxProps} />
         <Label>{label}</Label>
-        <button onClick={() => handleEdit()}>
-            <TrashIcon />
-        </button>
-        <button onClick={() => handleRemoval()}>
-            <Pencil1Icon />
-        </button>
+
+        <div className="right">
+            <button className="action_btn" onClick={() => handleEdit()}>
+                <TrashIcon />
+            </button>
+            <button className="action_btn" onClick={() => handleRemoval()}>
+                <Pencil1Icon />
+            </button>
+        </div>
     </StyledDiv>
 );
