@@ -9,6 +9,9 @@ export type HeaderProps = {
 
 const StyledDiv = styled.header`
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+
     button {
         all: unset;
         border-radius: 50%;
@@ -18,6 +21,9 @@ const StyledDiv = styled.header`
         color: #fff;
         width: 25px;
         height: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 `;
 
