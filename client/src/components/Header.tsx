@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { PlusIcon } from "@radix-ui/react-icons";
+import { Form } from "./form";
 
 export type HeaderProps = {
     children: React.ReactNode;
-    handleAddItem: () => void;
 };
 
 const StyledDiv = styled.header`
@@ -27,11 +27,37 @@ const StyledDiv = styled.header`
     }
 `;
 
-export const Header: React.FC<HeaderProps> = ({ handleAddItem, children }) => (
-    <StyledDiv>
-        <h1>{children}</h1>
-        <button onClick={() => handleAddItem()}>
-            <PlusIcon />
-        </button>
-    </StyledDiv>
-);
+export const Header: React.FC<HeaderProps> = ({ children }) => {
+    const [showForm, setShowForm] = useState<boolean>(false);
+
+    const createItem = async (title: string): Promise<void> => {
+        const res = await fetch("http://localhost:3000/items", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                title,
+                done: false,
+            }),
+        });
+
+        if (res.ok) setShowForm(false);
+
+        return;
+    };
+
+    return (
+        <StyledDiv>
+            <h1>{children}</h1>
+
+            {showForm ? (
+                <Form handleSubmit={createItem} handleCancel={() => setShowForm(false)} initialValue="" />
+            ) : (
+                <button onClick={() => setShowForm(true)}>
+                    <PlusIcon />
+                </button>
+            )}
+        </StyledDiv>
+    );
+};

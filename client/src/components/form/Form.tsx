@@ -17,9 +17,7 @@ export const Form = (props: FormProps): JSX.Element => {
                 e.preventDefault();
                 props.handleSubmit(data);
             }}
-            onReset={() => {
-                props.handleCancel();
-            }}
+            onReset={() => props.handleCancel()}
         >
             <Input initialValue={props.initialValue} handleInputChange={(value: string) => setData(value)} />
             <button type={"submit"}>
