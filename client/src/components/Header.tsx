@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { PlusIcon } from "@radix-ui/react-icons";
 import { Form } from "./form";
+import toast from "react-hot-toast";
 
 export type HeaderProps = {
     children: React.ReactNode;
@@ -31,7 +32,7 @@ export const Header: React.FC<HeaderProps> = ({ children }) => {
     const [showForm, setShowForm] = useState<boolean>(false);
 
     const createItem = async (title: string): Promise<void> => {
-        const res = await fetch("http://localhost:3000/items", {
+        await fetch("http://localhost:3000/items", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -40,9 +41,18 @@ export const Header: React.FC<HeaderProps> = ({ children }) => {
                 title,
                 done: false,
             }),
-        });
-
-        if (res.ok) setShowForm(false);
+        })
+            .then((res) => {
+                if (res.ok) {
+                    setShowForm(false);
+                    toast.success("Item created!");
+                } else {
+                    toast.error(`Something went wrong`);
+                }
+            })
+            .catch((err) => {
+                toast.error(`Error: ${err?.message || ""}`);
+            });
 
         return;
     };
