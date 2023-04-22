@@ -14,7 +14,7 @@ export default meta;
 type Story = StoryObj<typeof ListItem>;
 export const ToDo: Story = {
     args: {
-        label: "Lorem ipsum dolor",
+        title: "Lorem ipsum dolor",
     },
 };
 export const Done: Story = {

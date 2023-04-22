@@ -38,15 +38,15 @@ const Label = styled.label`
 `;
 
 export type LiteItemProp = CheckboxProps & {
-    label: string;
+    title: string;
     handleEdit: () => void;
     handleRemoval: () => void;
 };
 
-export const ListItem: React.FC<LiteItemProp> = ({ label, handleRemoval, handleEdit, ...checkboxProps }) => (
+export const ListItem: React.FC<LiteItemProp> = ({ title, handleRemoval, handleEdit, ...checkboxProps }) => (
     <StyledDiv>
         <Checkbox {...checkboxProps} />
-        <Label>{label}</Label>
+        <Label>{title}</Label>
 
         <div className="right">
             <button className="action_btn" onClick={() => handleEdit()}>

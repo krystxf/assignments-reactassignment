@@ -20,9 +20,9 @@ const emptyHandlers: Pick<LiteItemProp, "handleEdit" | "handleRemoval"> = {
 export const WithItems: Story = {
     args: {
         children: [
-            <ListItem {...emptyHandlers} label={"Lorem ipsum dolor"} />,
-            <ListItem {...emptyHandlers} label={"Nullam Adipiscing Ridiculus Fusce"} />,
-            <ListItem {...emptyHandlers} label={"Mattis Tristique Parturient "} />,
+            <ListItem {...emptyHandlers} title={"Lorem ipsum dolor"} />,
+            <ListItem {...emptyHandlers} title={"Nullam Adipiscing Ridiculus Fusce"} />,
+            <ListItem {...emptyHandlers} title={"Mattis Tristique Parturient "} />,
         ],
     },
 };

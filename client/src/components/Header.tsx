@@ -1,12 +1,12 @@
 import React, { useState } from "react";
+import type { PropsWithChildren } from "react";
 import styled from "styled-components";
 import { PlusIcon } from "@radix-ui/react-icons";
 import { Form } from "./form";
-import toast from "react-hot-toast";
 
-export type HeaderProps = {
-    children: React.ReactNode;
-};
+export type HeaderProps = PropsWithChildren<{
+    handleAddItem: (title: string) => Promise<void>;
+}>;
 
 const StyledDiv = styled.header`
     display: flex;
@@ -28,33 +28,12 @@ const StyledDiv = styled.header`
     }
 `;
 
-export const Header: React.FC<HeaderProps> = ({ children }) => {
+export const Header: React.FC<HeaderProps> = ({ handleAddItem, children }) => {
     const [showForm, setShowForm] = useState<boolean>(false);
 
-    const createItem = async (title: string): Promise<void> => {
-        await fetch("http://localhost:3000/items", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                title,
-                done: false,
-            }),
-        })
-            .then((res) => {
-                if (res.ok) {
-                    setShowForm(false);
-                    toast.success("Item created!");
-                } else {
-                    toast.error(`Something went wrong`);
-                }
-            })
-            .catch((err) => {
-                toast.error(`Error: ${err?.message || ""}`);
-            });
-
-        return;
+    const handleSubmit = async (title: string) => {
+        await handleAddItem(title);
+        setShowForm(false);
     };
 
     return (
@@ -62,7 +41,7 @@ export const Header: React.FC<HeaderProps> = ({ children }) => {
             <h1>{children}</h1>
 
             {showForm ? (
-                <Form handleSubmit={createItem} handleCancel={() => setShowForm(false)} initialValue="" />
+                <Form handleSubmit={handleSubmit} handleCancel={() => setShowForm(false)} initialValue="" />
             ) : (
                 <button onClick={() => setShowForm(true)}>
                     <PlusIcon />

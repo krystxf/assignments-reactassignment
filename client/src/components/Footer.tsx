@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
-import { DataContext } from "../providers/DataProvider";
 
 const StyledFooter = styled.footer`
     display: flex;
@@ -13,22 +12,16 @@ const StyledFooter = styled.footer`
     border-color: ${(props) => props.theme.colors.olive6};
 `;
 
-export const Footer: React.FC = () => {
-    const { loading, data, error } = useContext(DataContext);
+export type FooterProps = {
+    todoItems?: number;
+    doneItems?: number;
+};
 
-    const todoItems = loading ? "Loading" : data?.filter(({ done }) => !done).length;
-    const doneItems = loading ? "Loading" : data?.filter(({ done }) => done).length;
-
+export const Footer: React.FC<FooterProps> = ({ todoItems = 0, doneItems = 0 }) => {
     return (
         <StyledFooter>
-            {error ? (
-                <span>Error</span>
-            ) : (
-                <>
-                    <span>Todo: {todoItems}</span>
-                    <span>Done: {doneItems}</span>
-                </>
-            )}
+            <span>Todo: {todoItems}</span>
+            <span>Done: {doneItems}</span>
         </StyledFooter>
     );
 };

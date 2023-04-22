@@ -1,4 +1,5 @@
-import React, { PropsWithChildren } from "react";
+import React from "react";
+import type { PropsWithChildren } from "react";
 import styled from "styled-components";
 
 const StyledDiv = styled.div`
@@ -7,4 +8,6 @@ const StyledDiv = styled.div`
     gap: 8px;
 `;
 
-export const List: React.FC<PropsWithChildren> = ({ children }) => <StyledDiv>{children}</StyledDiv>;
+export const List: React.FC<PropsWithChildren> = ({ children }) => {
+    return <StyledDiv>{children}</StyledDiv>;
+};
