@@ -8,29 +8,23 @@ import toast, { Toaster } from "react-hot-toast";
 import React, { useState, useEffect } from "react";
 import { Item } from "./types";
 import { ListItem } from "./components/ListItem";
-import { addItem } from "./functions";
-
-export interface Data {
-    loading: boolean;
-    data: Item[] | null;
-    refetch: () => Promise<Item[]>;
-    error: Error | null;
-}
+import { addItem, removeItem } from "./functions";
+import { SERVER } from "./data";
 
 export const App: React.FC = () => {
-    const [data, setData] = useState<Data["data"]>(null);
-    const [loading, setLoading] = useState<Data["loading"]>(true);
-    const [error, setError] = useState<Data["error"]>(null);
+    const [data, setData] = useState<Item[] | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<Error | null>(null);
 
     const fetchData = async () => {
-        const res = await fetch("http://localhost:3000/items?_sort=done,createdAt&_order=asc,desc", {
+        const res = await fetch(`${SERVER}/items?_sort=done,createdAt&_order=asc,desc`, {
             method: "GET",
         })
             .then((res) => res.json())
             .catch((err) => {
                 setError(err);
                 setLoading(false);
-                toast.error(`Something went wrong`);
+                toast.error(`Error fetching data`);
             });
 
         setData(res);
@@ -42,14 +36,19 @@ export const App: React.FC = () => {
     const handleAddItem = async (title: string, done = false) => {
         await addItem(title, done);
         await fetchData();
-        return;
+    };
+
+    const handleRemoveItem = async (id: number) => {
+        await removeItem(id);
+        await fetchData();
     };
 
     useEffect(() => {
         fetchData();
     }, []);
 
-    const doneCount = loading ? 0 : data?.filter(({ done }) => done)?.length || 0;
+    const doneCount = data?.filter(({ done }) => done)?.length;
+    const todoCount = data?.filter(({ done }) => !done)?.length;
 
     return (
         <ThemeProvider>
@@ -70,12 +69,12 @@ export const App: React.FC = () => {
                                     title={title}
                                     checked={done}
                                     handleEdit={() => console.log("edit", id)}
-                                    handleRemoval={() => console.log("remove", id)}
+                                    handleRemoval={() => handleRemoveItem(id)}
                                 />
                             ))}
                         </List>
                     )}
-                    <Footer doneItems={doneCount} todoItems={data?.length || 0 - doneCount} />
+                    <Footer doneItems={doneCount} todoItems={todoCount} />
                 </Layout>
             </Container>
         </ThemeProvider>

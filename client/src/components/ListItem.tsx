@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Checkbox } from "./Checkbox";
 import { CheckboxProps } from "@radix-ui/react-checkbox";
 import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
+import { Form } from "./form";
 
 const StyledDiv = styled.div`
     display: flex;
@@ -39,22 +40,29 @@ const Label = styled.label`
 
 export type LiteItemProp = CheckboxProps & {
     title: string;
-    handleEdit: () => void;
+    handleEdit: (title: string) => void;
     handleRemoval: () => void;
 };
 
-export const ListItem: React.FC<LiteItemProp> = ({ title, handleRemoval, handleEdit, ...checkboxProps }) => (
-    <StyledDiv>
-        <Checkbox {...checkboxProps} />
-        <Label>{title}</Label>
+export const ListItem: React.FC<LiteItemProp> = ({ title, handleRemoval, handleEdit, ...checkboxProps }) => {
+    const [editMode, setEditMode] = useState<boolean>(false);
 
-        <div className="right">
-            <button className="action_btn" onClick={() => handleEdit()}>
-                <TrashIcon />
-            </button>
-            <button className="action_btn" onClick={() => handleRemoval()}>
-                <Pencil1Icon />
-            </button>
-        </div>
-    </StyledDiv>
-);
+    if (editMode)
+        return <Form handleSubmit={handleEdit} initialValue={title} handleCancel={() => setEditMode(false)} />;
+
+    return (
+        <StyledDiv>
+            <Checkbox {...checkboxProps} />
+            <Label>{title}</Label>
+
+            <div className="right">
+                <button className="action_btn" onClick={handleRemoval}>
+                    <TrashIcon />
+                </button>
+                <button className="action_btn" onClick={() => setEditMode(true)}>
+                    <Pencil1Icon />
+                </button>
+            </div>
+        </StyledDiv>
+    );
+};

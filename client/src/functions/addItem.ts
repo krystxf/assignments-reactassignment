@@ -1,7 +1,8 @@
 import toast from "react-hot-toast";
+import { SERVER } from "../data";
 
 const addItem = async (title: string, done = false) => {
-    await fetch("http://localhost:3000/items", {
+    await fetch(`${SERVER}/items`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -12,14 +13,12 @@ const addItem = async (title: string, done = false) => {
         }),
     })
         .then((res) => {
-            if (res.ok) {
-                toast.success("Item created!");
-            } else {
-                toast.error(`Something went wrong`);
-            }
+            if (res.ok) toast.success("Item created!");
+            else toast.error(`Something went wrong`);
         })
         .catch((err) => {
-            toast.error(`Error: ${err?.message || ""}`);
+            console.error(err);
+            toast.error("Error creating item");
         });
 
     return;
