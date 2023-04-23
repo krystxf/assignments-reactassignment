@@ -3,6 +3,7 @@ import type { PropsWithChildren } from "react";
 import styled from "styled-components";
 import { PlusIcon } from "@radix-ui/react-icons";
 import { Form } from "./form";
+import Button from "./Button";
 
 export type HeaderProps = PropsWithChildren<{
     handleAddItem: (title: string) => Promise<void>;
@@ -43,9 +44,9 @@ export const Header: React.FC<HeaderProps> = ({ handleAddItem, children }) => {
             {showForm ? (
                 <Form handleSubmit={handleSubmit} handleCancel={() => setShowForm(false)} initialValue="" />
             ) : (
-                <button onClick={() => setShowForm(true)}>
+                <Button onClick={() => setShowForm(true)}>
                     <PlusIcon />
-                </button>
+                </Button>
             )}
         </StyledDiv>
     );

@@ -4,6 +4,7 @@ import { Checkbox } from "./Checkbox";
 import { CheckboxProps } from "@radix-ui/react-checkbox";
 import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
 import { Form } from "./form";
+import Button from "./Button";
 
 const StyledDiv = styled.div`
     display: flex;
@@ -65,12 +66,12 @@ export const ListItem: React.FC<LiteItemProp> = ({ title, handleRemoval, handleE
             <Label>{title}</Label>
 
             <div className="right">
-                <button className="action_btn" onClick={handleRemoval}>
+                <Button className="action_btn" onClick={handleRemoval}>
                     <TrashIcon />
-                </button>
-                <button className="action_btn" onClick={() => setEditMode(true)}>
+                </Button>
+                <Button className="action_btn" onClick={() => setEditMode(true)}>
                     <Pencil1Icon />
-                </button>
+                </Button>
             </div>
         </StyledDiv>
     );
