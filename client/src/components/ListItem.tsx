@@ -48,7 +48,16 @@ export const ListItem: React.FC<LiteItemProp> = ({ title, handleRemoval, handleE
     const [editMode, setEditMode] = useState<boolean>(false);
 
     if (editMode)
-        return <Form handleSubmit={handleEdit} initialValue={title} handleCancel={() => setEditMode(false)} />;
+        return (
+            <Form
+                handleSubmit={(title) => {
+                    handleEdit(title);
+                    setEditMode(false);
+                }}
+                initialValue={title}
+                handleCancel={() => setEditMode(false)}
+            />
+        );
 
     return (
         <StyledDiv>

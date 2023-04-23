@@ -8,7 +8,7 @@ import toast, { Toaster } from "react-hot-toast";
 import React, { useState, useEffect } from "react";
 import { Item } from "./types";
 import { ListItem } from "./components/ListItem";
-import { addItem, removeItem } from "./functions";
+import { addItem, editItem, removeItem } from "./functions";
 import { SERVER } from "./data";
 
 export const App: React.FC = () => {
@@ -43,6 +43,11 @@ export const App: React.FC = () => {
         await fetchData();
     };
 
+    const handleEditItem = async (id: number, { title, done }: { title?: string; done?: boolean }) => {
+        await editItem(id, { title, done });
+        await fetchData();
+    };
+
     useEffect(() => {
         fetchData();
     }, []);
@@ -67,8 +72,9 @@ export const App: React.FC = () => {
                                 <ListItem
                                     key={id}
                                     title={title}
-                                    checked={done}
-                                    handleEdit={() => console.log("edit", id)}
+                                    defaultChecked={done}
+                                    onCheckedChange={(done) => handleEditItem(id, { done: !!done })}
+                                    handleEdit={(title) => handleEditItem(id, { title })}
                                     handleRemoval={() => handleRemoveItem(id)}
                                 />
                             ))}
