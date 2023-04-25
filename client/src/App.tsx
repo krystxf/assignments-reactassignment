@@ -16,9 +16,9 @@ export const App: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<Error | null>(null);
 
-    const fetchData = async () => {
+    const fetchData = async (signal: AbortSignal | undefined = undefined) => {
         try {
-            const res = await getItems();
+            const res = await getItems({ signal });
             setData(res as Item[]);
             setLoading(false);
         } catch (err) {
@@ -44,7 +44,11 @@ export const App: React.FC = () => {
     };
 
     useEffect(() => {
-        fetchData();
+        const controller = new AbortController();
+
+        fetchData(controller.signal);
+
+        return () => controller.abort();
     }, []);
 
     const doneCount = data?.filter(({ done }) => done)?.length;
