@@ -11,21 +11,18 @@ export type HeaderProps = PropsWithChildren<{
 
 const StyledDiv = styled.header`
     display: flex;
+    flex-wrap: wrap;
+    row-gap: 8px;
     align-items: center;
     justify-content: space-between;
+    min-height: 40px;
+    padding: 4px 10px;
+    border-bottom: ${(props) => `1px solid ${props.theme.colors.blackA6}`};
+    margin-bottom: 10px;
 
-    button {
-        all: unset;
-        border-radius: 50%;
-        border: 1px solid;
-        border-color: ${(props) => props.theme.colors.olive9};
-        background-color: ${(props) => props.theme.colors.grass9};
-        color: #fff;
-        width: 25px;
-        height: 25px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    h1 {
+        font-weight: 500;
+        font-size: 1.5rem;
     }
 `;
 

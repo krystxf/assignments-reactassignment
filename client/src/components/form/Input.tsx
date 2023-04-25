@@ -3,14 +3,13 @@ import styled from "styled-components";
 import { InputProps } from "./types";
 
 const StyledInput = styled.input`
-    border-radius: 12px;
+    border-radius: 4px;
     padding: 4px 12px;
     outline: none;
-    border-width: 1px;
-    border-color: gray;
+    border: ${(props) => `1px solid ${props.theme.colors.blackA7}`};
 
     &:focus {
-        border: 1px solid #0ea5e9;
+        border: ${(props) => `1px solid ${props.theme.colors.blackA9}`};
     }
 `;
 

@@ -9,21 +9,27 @@ import Button from "./Button";
 const StyledDiv = styled.div`
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     padding: 4px 10px;
     border-radius: 4px;
     transition: all 0.2s ease-in-out;
+    transition: height 2s ease-in-out;
+    min-height: 30px;
+    row-gap: 4px;
+    gap: 8px;
 
     .action_btn {
-        visibility: hidden;
+        display: none;
         opacity: 0;
-        transition: all 0.1s ease-in-out;
     }
 
-    &:hover {
-        background-color: ghostwhite;
+    :hover {
+        &.listItem {
+            background-color: ${(props) => props.theme.colors.blackA2};
+        }
 
         .action_btn {
-            visibility: visible;
+            display: block;
             opacity: 1;
         }
     }
@@ -35,10 +41,6 @@ const StyledDiv = styled.div`
     }
 `;
 
-const Label = styled.label`
-    margin-left: 15px;
-`;
-
 export type LiteItemProp = CheckboxProps & {
     title: string;
     handleEdit: (title: string) => void;
@@ -48,31 +50,32 @@ export type LiteItemProp = CheckboxProps & {
 export const ListItem: React.FC<LiteItemProp> = ({ title, handleRemoval, handleEdit, ...checkboxProps }) => {
     const [editMode, setEditMode] = useState<boolean>(false);
 
-    if (editMode)
-        return (
-            <Form
-                handleSubmit={(title) => {
-                    handleEdit(title);
-                    setEditMode(false);
-                }}
-                initialValue={title}
-                handleCancel={() => setEditMode(false)}
-            />
-        );
-
     return (
-        <StyledDiv>
-            <Checkbox {...checkboxProps} />
-            <Label>{title}</Label>
+        <StyledDiv className={editMode ? "editMode" : "listItem"}>
+            {editMode ? (
+                <Form
+                    handleSubmit={(title) => {
+                        handleEdit(title);
+                        setEditMode(false);
+                    }}
+                    initialValue={title}
+                    handleCancel={() => setEditMode(false)}
+                />
+            ) : (
+                <>
+                    <Checkbox {...checkboxProps} />
+                    <span>{title}</span>
 
-            <div className="right">
-                <Button className="action_btn" onClick={handleRemoval}>
-                    <TrashIcon />
-                </Button>
-                <Button className="action_btn" onClick={() => setEditMode(true)}>
-                    <Pencil1Icon />
-                </Button>
-            </div>
+                    <div className="right">
+                        <Button className="action_btn danger" onClick={handleRemoval}>
+                            <TrashIcon />
+                        </Button>
+                        <Button className="action_btn" onClick={() => setEditMode(true)}>
+                            <Pencil1Icon />
+                        </Button>
+                    </div>
+                </>
+            )}
         </StyledDiv>
     );
 };

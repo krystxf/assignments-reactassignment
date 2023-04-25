@@ -8,8 +8,8 @@ import toast, { Toaster } from "react-hot-toast";
 import React, { useState, useEffect } from "react";
 import { Item } from "./types";
 import { ListItem } from "./components/ListItem";
-import { addItem, editItem, removeItem } from "./functions";
-import { SERVER } from "./data";
+import { addItem, editItem, getItems, removeItem } from "./functions";
+import type { AddItem as HandleAddItem, EditItem as HandleEditItem, RemoveItem as HandleRemoveItem } from "./functions";
 
 export const App: React.FC = () => {
     const [data, setData] = useState<Item[] | null>(null);
@@ -17,33 +17,28 @@ export const App: React.FC = () => {
     const [error, setError] = useState<Error | null>(null);
 
     const fetchData = async () => {
-        const res = await fetch(`${SERVER}/items?_sort=done,createdAt&_order=asc,desc`, {
-            method: "GET",
-        })
-            .then((res) => res.json())
-            .catch((err) => {
-                setError(err);
-                setLoading(false);
-                toast.error(`Error fetching data`);
-            });
-
-        setData(res);
-        setLoading(false);
-
-        return res as Item[];
+        try {
+            const res = await getItems();
+            setData(res as Item[]);
+            setLoading(false);
+        } catch (err) {
+            setError(err as Error);
+            setLoading(false);
+            toast.error(`Error fetching data`);
+        }
     };
 
-    const handleAddItem = async (title: string, done = false) => {
+    const handleAddItem: HandleAddItem = async (title, done = false) => {
         await addItem(title, done);
         await fetchData();
     };
 
-    const handleRemoveItem = async (id: number) => {
+    const handleRemoveItem: HandleRemoveItem = async (id) => {
         await removeItem(id);
         await fetchData();
     };
 
-    const handleEditItem = async (id: number, { title, done }: { title?: string; done?: boolean }) => {
+    const handleEditItem: HandleEditItem = async (id, { title, done }) => {
         await editItem(id, { title, done });
         await fetchData();
     };
@@ -65,7 +60,7 @@ export const App: React.FC = () => {
                     {loading ? (
                         <div>Loading...</div>
                     ) : error ? (
-                        <div>Error: {error?.message || ""}</div>
+                        <div>Error: {error.message}</div>
                     ) : (
                         <List>
                             {data?.map(({ id, title, done }) => (

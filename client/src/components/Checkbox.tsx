@@ -5,19 +5,21 @@ import { CheckIcon } from "@radix-ui/react-icons";
 
 const StyledCheckbox = styled(CheckboxPrimitive.Root)`
     all: unset;
-    background-color: white;
+    background-color: ${(props) => props.theme.colors.olive3};
+    border: ${(props) => `1px solid ${props.theme.colors.blackA7}`};
+    border-radius: 4px;
     width: 25px;
     height: 25px;
-    border-radius: 2px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: ${(props) => `0 2px 10px ${props.theme.colors.blackA7}`};
+
     &:hover {
-        background-color: ${(props) => props.theme.colors.grass3};
+        background-color: ${(props) => props.theme.colors.olive4};
     }
     &:focus {
-        box-shadow: 0 2px 10px black;
+        border: ${(props) => `1px solid ${props.theme.colors.blackA9}`};
     }
 `;
 

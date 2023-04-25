@@ -29,8 +29,8 @@ More information about client are in `client/README.md`. Make sure you read them
 
 Using provided UI components, implement following modifications, bugfixes or new features (you can decide in what order):
 
-- [ ] **B1**: Fix all bugs and visual imperfections you find
-- [ ] **B2**: Fix layout of non-empty `List` component
+- [x] **B1**: Fix all bugs and visual imperfections you find
+- [x] **B2**: Fix layout of non-empty `List` component
 - [x] **B3**: Fix Layout component so the `Footer` is always attached to its bottom
 - [x] **UI1**: Style `Header` so the button is aligned on the right
 - [x] **UI2**: Style `ListItem` so action buttons are aligned on the right
@@ -47,7 +47,7 @@ Using provided UI components, implement following modifications, bugfixes or new
 - [x] **F7**: Create a `Button` component and use it instead of all `button` html elements
 - [ ] **SB1**: Add story/stories for `Layout` component
 - [ ] **SB2**: Add story showing `ListItem` with visible buttons (implemented in _UI3_)
-- [ ] **SB3**: Add stories showing available `Button` variations
+- [x] **SB3**: Add stories showing available `Button` variations
 
 ### Server
 

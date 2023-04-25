@@ -7,6 +7,7 @@ import Button from "../Button";
 
 const StyledForm = styled.form`
     display: flex;
+    gap: 4px;
 `;
 
 export const Form = (props: FormProps): JSX.Element => {
@@ -21,11 +22,11 @@ export const Form = (props: FormProps): JSX.Element => {
             onReset={() => props.handleCancel()}
         >
             <Input initialValue={props.initialValue} handleInputChange={(value: string) => setData(value)} />
-            <Button type={"submit"}>
-                <CheckIcon />
-            </Button>
-            <Button type={"reset"}>
+            <Button type="reset">
                 <Cross1Icon />
+            </Button>
+            <Button type="submit">
+                <CheckIcon />
             </Button>
         </StyledForm>
     );
