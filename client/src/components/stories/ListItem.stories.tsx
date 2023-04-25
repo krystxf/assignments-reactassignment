@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-
+import { userEvent } from "@storybook/testing-library";
 import { ListItem } from "../ListItem";
 
 const meta = {
@@ -17,9 +17,21 @@ export const ToDo: Story = {
         title: "Lorem ipsum dolor",
     },
 };
+
 export const Done: Story = {
     args: {
         ...ToDo.args,
         checked: true,
+    },
+};
+
+export const Hover: Story = {
+    play: async ({ canvasElement }) => {
+        await userEvent.hover(canvasElement.getElementsByClassName("listItem")[0]);
+
+        // await userEvent.click(canvasElement.querySelector("button")!);
+    },
+    args: {
+        ...ToDo.args,
     },
 };

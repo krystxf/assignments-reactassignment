@@ -23,6 +23,10 @@ const StyledDiv = styled.div`
         opacity: 0;
     }
 
+    .hover {
+        background-color: ${(props) => props.theme.colors.blackA2};
+    }
+
     :hover {
         &.listItem {
             background-color: ${(props) => props.theme.colors.blackA2};
